@@ -1,0 +1,15 @@
+{% extends 'authapp/base.html' %}
+{% block content %}
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        <input type="submit" value="Save" class="form-control"/>
+    </form>
+<br>
+    <button class="btn btn-link form-control">
+        <a href="{% url 'main' %}">Main page</a>
+    </button>
+    <div>
+        <img src="/media/{{ user.avatar }}" alt="avatar">
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'authapp/base.html' %}
+{% block content %}
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {{ login_form.as_p }}
+        <input type="submit" value="Login" class="form-control"/>
+    </form>
+<br>
+    <button class="btn btn-link form-control">
+        <a href="{% url 'auth:register' %}">Sign up</a>
+    </button>
+{% endblock %}

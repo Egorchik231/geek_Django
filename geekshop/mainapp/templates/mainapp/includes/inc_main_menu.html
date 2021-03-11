@@ -22,3 +22,25 @@
         контакты
     </a>
 </li>
+
+    {% if user.is_authenticated %}
+    <li>
+        <a href="{% url 'auth:edit' %}"
+           class="{% if request.resolver_match.url_name == 'profile' %}
+                            active
+                  {% endif %}">
+            {{ user.first_name|default:'Profile' }}
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'auth:logout' %}">
+            Log Out
+        </a>
+    </li>
+    {% else %}
+    <li>
+        <a href="{% url 'auth:login' %}">
+            Log In
+        </a>
+    </li>
+    {% endif %}
