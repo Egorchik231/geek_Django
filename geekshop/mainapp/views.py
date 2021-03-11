@@ -1,24 +1,21 @@
 from datetime import datetime
-
 from django.shortcuts import render
+from mainapp.models import Product, ProductCategory
 
 
 def main(request):
+
+    products = Product.objects.all()
     context = {
         'title': 'Главная',
-        'date': datetime.now()
+        'date': datetime.now(),
+        'products': products[:4]
     }
     return render(request, 'mainapp/index.html', context)
 
 
-def products(request):
-    links_menu = [
-        {'href': 'products_all', 'name': 'все'},
-        {'href': 'products_home', 'name': 'дом'},
-        {'href': 'products_office', 'name': 'офис'},
-        {'href': 'products_modern', 'name': 'модерн'},
-        {'href': 'products_classic', 'name': 'классика'},
-    ]
+def products(request, pk=None):
+    links_menu = ProductCategory.objects.all()
     context = {
         'title': 'Товары',
         'date': datetime.now(),
